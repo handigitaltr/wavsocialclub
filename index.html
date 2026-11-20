@@ -82,7 +82,9 @@ main{position:relative;z-index:1;width:100%;max-width:440px;padding:56px 36px;te
 }
 .name span{font-size:.86rem;letter-spacing:.04em;color:var(--muted)}
 .go{font-size:.9rem;letter-spacing:.06em;color:var(--wave);white-space:nowrap}
-.ticker{position:relative;margin:34px 0 0;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+.foot{margin:34px 0 0;font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;font-size:1.25rem;line-height:1.3;color:var(--ink)}
+.ticker{position:relative;overflow-x:clip;margin:22px 0 0;padding:14px 0;border-top:1px solid rgba(111,163,207,.35);border-bottom:1px solid rgba(111,163,207,.35)}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
 .track{display:flex;width:max-content;animation:ticker-move 16s linear infinite;will-change:transform}
 .group{display:flex;align-items:center;flex:none}
 .group span{font-family:"Cormorant Garamond",Georgia,"Times New Roman",serif;font-style:italic;font-weight:500;font-size:1.2rem;line-height:1;color:var(--ink);white-space:nowrap;padding:0 22px}
@@ -90,29 +92,20 @@ main{position:relative;z-index:1;width:100%;max-width:440px;padding:56px 36px;te
 .group i{flex:none;width:5px;height:5px;border-radius:50%;background:var(--wave);opacity:.7}
 @keyframes ticker-move{to{transform:translateX(-50%)}}
 .ticker::before,.ticker::after{
-  content:"";position:absolute;left:0;width:38%;height:1px;
-  background:linear-gradient(90deg,transparent,var(--wave) 50%,#dff0ff 60%,transparent);
-  filter:drop-shadow(0 0 4px var(--wave));
-  animation:ticker-light 4.5s cubic-bezier(.5,0,.5,1) infinite;
+  content:"";position:absolute;left:0;width:40%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--wave),#dff0ff,var(--wave),transparent);
+  box-shadow:0 0 10px var(--wave);
+  animation:ticker-light 3.6s linear infinite;
 }
-.ticker::before{top:0}
-.ticker::after{bottom:0;animation-delay:-2.25s}
-@keyframes ticker-light{from{transform:translateX(-100%)}to{transform:translateX(270%)}}
+.ticker::before{top:-1px}
+.ticker::after{bottom:-1px;animation-delay:-1.8s}
+@keyframes ticker-light{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
 @keyframes emerge{from{opacity:0;filter:invert(1) hue-rotate(180deg) blur(10px);transform:scale(.97)}to{opacity:1;filter:invert(1) hue-rotate(180deg);transform:none}}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes grow-x{to{transform:scaleX(1)}}
 @keyframes grow-y{to{transform:scaleY(1)}}
 @keyframes orbit{to{--a:360deg}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-@media (prefers-reduced-motion:reduce){
-  .logo,.rest{animation:none}
-  .wave path{animation:none;stroke-dashoffset:0}
-  .row{transition:none}
-  .track,.ticker::before,.ticker::after{animation:none}
-  .ticker::before,.ticker::after{display:none}
-  .frame i{animation:none;transform:none}
-  .frame::after{animation:none;opacity:0}
-}
 </style>
 </head>
 <body>
@@ -134,15 +127,16 @@ main{position:relative;z-index:1;width:100%;max-width:440px;padding:56px 36px;te
         <span class="go">Katıl</span>
       </a>
     </nav>
-    <div class="ticker" role="region" aria-label="Retreats, Pilates ve deneyimler. Where wellness meets community">
-      <div class="track">
-        <div class="group">
-          <span>Retreats, Pilates ve deneyimler</span><i></i><span class="caps">Where wellness meets community</span><i></i>
-          <span>Retreats, Pilates ve deneyimler</span><i></i><span class="caps">Where wellness meets community</span><i></i>
-        </div>
-        <div class="group" aria-hidden="true">
-          <span>Retreats, Pilates ve deneyimler</span><i></i><span class="caps">Where wellness meets community</span><i></i>
-          <span>Retreats, Pilates ve deneyimler</span><i></i><span class="caps">Where wellness meets community</span><i></i>
+    <p class="foot">Retreats, Pilates ve deneyimler</p>
+    <div class="ticker" role="region" aria-label="Where wellness meets community">
+      <div class="marquee">
+        <div class="track">
+          <div class="group">
+            <span class="caps">Where wellness meets community</span><i></i><span class="caps">Where wellness meets community</span><i></i>
+          </div>
+          <div class="group" aria-hidden="true">
+            <span class="caps">Where wellness meets community</span><i></i><span class="caps">Where wellness meets community</span><i></i>
+          </div>
         </div>
       </div>
     </div>
